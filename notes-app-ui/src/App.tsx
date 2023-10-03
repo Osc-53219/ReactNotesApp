@@ -1,6 +1,39 @@
+import { useState } from "react";
 import "./App.css"
 
 const App = () => {
+  const [notes, setNotes] = useState([
+    {
+      id: 1,
+      title: "Notes Title 1",
+      content: "Content 1"
+    },
+    {
+      id: 2,
+      title: "Notes Title 2",
+      content: "Content 2"
+    },
+    {
+      id: 3,
+      title: "Notes Title 3",
+      content: "Content 3"
+    },
+    {
+      id: 4,
+      title: "Notes Title 4",
+      content: "Content 4"
+    },
+    {
+      id: 5,
+      title: "Notes Title 5",
+      content: "Content 5"
+    },
+    {
+      id: 6,
+      title: "Notes Title 6",
+      content: "Content 6"
+    }
+  ]);
   return(
     <div className="app-container">
       <form className="note-form">
@@ -21,13 +54,15 @@ const App = () => {
         </form>
 
       <div className="notes-grid">
-        <div className="note-item">
-          <div className="notes-header">
-            <button>x</button>
-          </div>
-          <h2>Note Title</h2>
-          <p>Note Content</p>
+        {notes.map((note)=> (
+          <div className="note-item">
+            <div className="notes-header">
+              <button>x</button>
+            </div>
+          <h2>{note.title}</h2>
+          <p>{note.content}</p>
         </div>
+        ))}
       </div>
     </div>
   );
