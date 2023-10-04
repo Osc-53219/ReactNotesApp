@@ -1,8 +1,17 @@
 import { useState } from "react";
 import "./App.css"
 
+type Note = {
+  id: number;
+  title: string;
+  content: string;
+}
+
+
 const App = () => {
-  const [notes, setNotes] = useState([
+  const [notes, setNotes] = useState<
+    Note[]
+  >([
     {
       id: 1,
       title: "Notes Title 1",
