@@ -103,7 +103,20 @@ const App = () => {
     setTitle("")
     setContent("")
     setSelectedNote(null);
-  }
+  };
+
+  const deleteNote = (
+    Event: React.MouseEvent,
+    noteId: number
+  ) => {
+    Event.stopPropagation();
+
+    const updatedNotes = notes.filter(
+      (note) => note.id !== noteId
+    )
+
+    setNotes(updatedNotes);
+  };
 
   return(
     <div className="app-container">
@@ -152,7 +165,13 @@ const App = () => {
           onClick={()=> handleNoteClick(note)}
           >
             <div className="notes-header">
-              <button>x</button>
+              <button 
+                onClick={(Event) =>
+                  deleteNote(Event, note.id)
+              }
+              >
+                x
+              </button>
             </div>
           <h2>{note.title}</h2>
           <p>{note.content}</p>
