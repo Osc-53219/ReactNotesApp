@@ -56,7 +56,7 @@ const App = () => {
     setContent(note.content);
   }
 
-  const handleAppNote = (
+  const handleAddNote = (
     Event: React.FormEvent
   ) => {
     Event.preventDefault();
@@ -67,18 +67,43 @@ const App = () => {
       content: content
     }
 
-
     setNotes([newNote, ...notes]);
     setTitle("");
     setContent("");
   };
 
+  const handleUpdate =(
+    Event: React.FormEvent
+  ) => {
+      Event.preventDefault();
+
+      if(!selectedNote){
+        return;
+      }
+    
+    const updatedNote: Note = {
+      id: selectedNote.id,
+      title: title,
+      content: content
+    }
+
+    const updatedNotesList = notes.map((note)=>
+    note.id === selectedNote.id
+      ? updatedNote
+      : note
+    )
+
+    setNotes(updatedNotesList)
+    setTitle("")
+    setContent("")
+    setSelectedNote(null);
+  };
 
   return(
     <div className="app-container">
       <form 
         className="note-form"
-        onSubmit={(Event) => handleAppNote(Event)}
+        onSubmit={(Event) => handleAddNote(Event)}
       >
         <input
           value={title}
